@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kedvencek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kedvenc Hírek</h1>
+        <a href="/" class="back-link">Vissza a főoldalra</a>
+        
+        <!-- Kedvencek lista -->
+        <div id="favorites-container" class="rss-container">
+            {% if favorites %}
+                {% for article in favorites %}
+                <div class="article">
+                    <div class="article-title">{{ article.title }}</div>
+                    <div class="article-date">{{ article.published }}</div>
+                    <a href="{{ article.link }}" target="_blank" class="article-link">Olvasd tovább</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Nincsenek kedvencek hozzáadva.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern RSS Hírolvasó</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hírek</h1>
+
+        <!-- Időjárás widget -->
+        <div class="weather-wrapper">
+            <div class="article wow animate__fadeInUp">
+                <div class="weather-card">
+                    <div class="weather-icon sun"></div> <!-- Nap ikon -->
+                    <h1>{{ weather.temperature }}ºC</h1> <!-- Hőmérséklet -->
+                    <p>{{ weather.city }}</p> <!-- Város neve -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="Beállítások" class="settings-icon" id="settingsIcon"> <!-- Fogaskerék ikon -->
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- RSS feed hozzáadás form -->
+        <form id="rss-form">
+            <input type="text" id="rss-url" placeholder="Add meg az RSS feed URL-jét" required>
+            <button type="submit">Hozzáadás</button>
+        </form>
+        <a href="/favorites" class="favorites-link">Kedvencek megtekintése</a>
+
+        <!-- RSS feed konténer, ahová a hírek betöltődnek -->
+        <div id="rss-container" class="rss-container">
+            <!-- Töltés animációval rendelkező kártya sablonok -->
+            <div class="article loading">
+                <div class="loading-animation">
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                </div>
+            </div>
+            <div class="article loading">
+                <div class="loading-animation">
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                    <div class="slice"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modális ablak -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Város beállítása</h2>
+                <input type="text" id="cityInput" class="modal-input" placeholder="Város neve">
+                <button id="saveCity" class="modal-button">Mentés</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
+ <!-- Egyszerű statikus JS fájl beillesztése -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+
+
+</body>
+</html>
